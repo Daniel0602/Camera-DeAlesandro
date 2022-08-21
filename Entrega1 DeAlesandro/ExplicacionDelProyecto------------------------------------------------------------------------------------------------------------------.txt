@@ -1,0 +1,9 @@
+Buen dia profe
+
+el juego que quiero hacer seria un survival con enemigos, diferentes zonas con
+diferentes recursos que sepuedan vender y una tienda para mejorar herramientas
+o armadura, tambien tendria varios elementos magicos que te ayuden al farmear o
+pelear contra enemigos
+
+pd: se que hay algunos errores como que a veces se bugea el canjump,
+prometo arreglarlo para la proxima porque ahora no tengo mucho tiempo
