@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("s")) { direction += Vector3.back; PlayerAnimatorS.SetTrigger("back"); }
         if (Input.GetKey("a")) { direction += Vector3.left; PlayerAnimatorS.SetTrigger("left"); }
         if (Input.GetKey("d")) { direction += Vector3.right; PlayerAnimatorS.SetTrigger("right"); }
-        if(!CanJump){PlayerAnimatorS.SetTrigger("jump");}
+        //if(!CanJump){PlayerAnimatorS.SetTrigger("jump");}
 
         if(direction == Vector3.zero)
         {PlayerAnimatorS.SetTrigger("idle");}

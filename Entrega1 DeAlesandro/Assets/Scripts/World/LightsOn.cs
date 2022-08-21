@@ -11,7 +11,7 @@ public class LightsOn : MonoBehaviour
     }
     void Update()
     {
-        if(Day.day == true){Luz.enabled = false;}
-        if(Day.day == false){Luz.enabled = true;}
+        if(DayManager.day == true){Luz.enabled = false;}
+        if(DayManager.day == false){Luz.enabled = true;}
     }
 }

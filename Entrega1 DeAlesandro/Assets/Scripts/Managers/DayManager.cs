@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Day : MonoBehaviour
+public class DayManager : MonoBehaviour
 {   //-----Time-----
     public float timeMultiplier = 1f;
 
