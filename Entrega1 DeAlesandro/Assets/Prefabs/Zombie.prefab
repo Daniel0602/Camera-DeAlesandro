@@ -73,7 +73,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5157986766854049581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.61}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -96,7 +96,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1890396854
 CapsuleCollider:
@@ -124,7 +124,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b672434a51bb54f9b7564c11f794f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZombieAnimator: {fileID: 1451990127452878813}
   Target: {fileID: 0}
+  ZDamage: 1
+  life: 1
+  Speed: 6
+  Range: 10
+  frezed: 0
+  CanAtack: 1
 --- !u!1001 &4993389151089019468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -396,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 75c0ee7999611ef40b5e22b3753e6900, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 90a2555f4d6ca2b4fae618d3f9830646, type: 2}
     - target: {fileID: 6371936846906434246, guid: 75c0ee7999611ef40b5e22b3753e6900, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -442,6 +453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75c0ee7999611ef40b5e22b3753e6900, type: 3}
+--- !u!95 &1451990127452878813 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 75c0ee7999611ef40b5e22b3753e6900, type: 3}
+  m_PrefabInstance: {fileID: 4993389151089019468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4811724049125092775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 75c0ee7999611ef40b5e22b3753e6900, type: 3}

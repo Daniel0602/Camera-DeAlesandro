@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static int Wood,Stone;
+    public static int Wood,Rock;
 
     private void Update()
-    {
-        Debug.Log(Stone);
-    }
+    {Debug.Log("madera " + Wood);}
 }

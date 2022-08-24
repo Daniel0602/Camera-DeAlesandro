@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerDash : MonoBehaviour
 {
+    [SerializeField] Animator PlayerAnimatorS;
     //-----dash-----
     public int dashsMax = 3;
     public int dashs = 3;

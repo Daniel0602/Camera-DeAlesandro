@@ -3,45 +3,86 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{//-----Animations-----
+{
+    //-----Animations-----
     [SerializeField] Animator PlayerAnimatorS;
-//-----Stats-----
+
+    //-----Stats-----
     public float Speed = 10f;
     public float jumpForce = 10f;
-//-----Movimiento-----
+
+    public Transform SpawnPoint;
+    //-----Movimiento-----
     Vector3 direction;
-//-----Jump-----
+
+    //-----Jump-----
     public bool CanJump;
     private Rigidbody myRigidbody;
-    void Start(){myRigidbody = GetComponent<Rigidbody>();}
+    void Start() { myRigidbody = GetComponent<Rigidbody>(); }
 
     void Update()
     {
         direction = Vector3.zero;
-        if (Input.GetKey("w")) { direction += Vector3.forward; PlayerAnimatorS.SetTrigger("forward"); }
-        if (Input.GetKey("s")) { direction += Vector3.back; PlayerAnimatorS.SetTrigger("back"); }
-        if (Input.GetKey("a")) { direction += Vector3.left; PlayerAnimatorS.SetTrigger("left"); }
-        if (Input.GetKey("d")) { direction += Vector3.right; PlayerAnimatorS.SetTrigger("right"); }
-        //if(!CanJump){PlayerAnimatorS.SetTrigger("jump");}
+        if (Input.GetKey("w"))
+        {
+            direction += Vector3.forward;
+            if (!IsAnimation("forward") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("forward");
+        }
 
-        if(direction == Vector3.zero)
-        {PlayerAnimatorS.SetTrigger("idle");}
+        if (Input.GetKey("s"))
+        {
+            direction += Vector3.back;
+            if (!IsAnimation("back") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("back");
+        }
+
+        if (Input.GetKey("a"))
+        {
+            direction += Vector3.left;
+            if (!IsAnimation("left") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("left");
+        }
+
+        if (Input.GetKey("d"))
+        {
+            direction += Vector3.right;
+            if (!IsAnimation("right") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("right");
+        }
+
+        //-----Triggers-----
+        if (direction == Vector3.zero)
+        { if (!IsAnimation("idle")) PlayerAnimatorS.SetBool("idle", true); }
+
+        //-----Movimiento-----
+        if (direction != Vector3.zero)
+        { transform.Translate(direction * Speed * Time.deltaTime); }
+
+        //-----Muerte-----
+        if (PlayerStats.life <= 0)
+        {
+            transform.position = SpawnPoint.position;
+            PlayerStats.life = PlayerStats.maxLife;
+            PlayerStats.deads++;
+        }
     }
 
     private void FixedUpdate()
     {
-        if(direction != Vector3.zero)
-        {transform.Translate(direction * Speed * Time.deltaTime);}
-
-        if(Input.GetKeyDown("space") && CanJump)
-        {
-            myRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+        //-----Jump-----
+        if (Input.GetKeyDown("space") && CanJump)
+        { myRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); }
+    }
+    //-----CanJump-----
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Floor")) { CanJump = true; }
+        PlayerAnimatorS.SetBool("jump", false);
     }
 
-    private void OnCollisionEnter(Collision other)
-    {if(other.gameObject.CompareTag("Floor")){CanJump = true;}}
-
     private void OnCollisionExit(Collision other)
-    {if(other.gameObject.CompareTag("Floor")){CanJump = false;}}
+    {
+        if (other.gameObject.CompareTag("Floor")) { CanJump = false; }
+        PlayerAnimatorS.SetBool("jump", true);
+    }
+
+    bool IsAnimation(string anim)
+    { return PlayerAnimatorS.GetCurrentAnimatorStateInfo(0).IsName(anim); }
 }
