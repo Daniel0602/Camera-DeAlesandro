@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - intarea
   - InteractZone
+  - Tool
+  - FireBall
   layers:
   - Default
   - TransparentFX
