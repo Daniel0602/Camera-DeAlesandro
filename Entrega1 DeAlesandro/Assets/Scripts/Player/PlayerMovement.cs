@@ -23,33 +23,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         direction = Vector3.zero;
+
         if (Input.GetKey("w"))
-        {
-            direction += Vector3.forward;
-            if (!IsAnimation("forward") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("forward");
-        }
-
+        {direction += Vector3.forward;}
         if (Input.GetKey("s"))
-        {
-            direction += Vector3.back;
-            if (!IsAnimation("back") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("back");
-        }
-
+        {direction += Vector3.back;}
         if (Input.GetKey("a"))
-        {
-            direction += Vector3.left;
-            if (!IsAnimation("left") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("left");
-        }
-
+        {direction += Vector3.left;}
         if (Input.GetKey("d"))
-        {
-            direction += Vector3.right;
-            if (!IsAnimation("right") && !IsAnimation("jump")) PlayerAnimatorS.SetTrigger("right");
-        }
-
-        //-----Triggers-----
-        if (direction == Vector3.zero)
-        { if (!IsAnimation("idle")) PlayerAnimatorS.SetBool("idle", true); }
+        {direction += Vector3.right;}
 
         //-----Movimiento-----
         if (direction != Vector3.zero)
@@ -62,6 +44,13 @@ public class PlayerMovement : MonoBehaviour
             PlayerStats.life = PlayerStats.maxLife;
             PlayerStats.deads++;
         }
+
+        //-----Animaciones-----
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        PlayerAnimatorS.SetFloat("Horizontal",x);
+        PlayerAnimatorS.SetFloat("Vertical",z);
     }
 
     private void FixedUpdate()
@@ -73,14 +62,20 @@ public class PlayerMovement : MonoBehaviour
     //-----CanJump-----
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Floor")) { CanJump = true; }
-        PlayerAnimatorS.SetBool("jump", false);
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            CanJump = true;
+            PlayerAnimatorS.SetTrigger("CanJump");
+        }
     }
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.CompareTag("Floor")) { CanJump = false; }
-        PlayerAnimatorS.SetBool("jump", true);
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            CanJump = false;
+            if(!IsAnimation("fall")) PlayerAnimatorS.SetTrigger("Jumping");
+        }
     }
 
     bool IsAnimation(string anim)

@@ -17,7 +17,6 @@ public class Zombies : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Vida Del Jugador " + PlayerStats.life);
         transform.LookAt(Target);
 
         Vector3 Dir = transform.position - Target.position;

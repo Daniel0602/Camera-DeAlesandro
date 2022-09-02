@@ -1,39 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToolManager : MonoBehaviour
 {
     //-----Array-----
     [SerializeField] GameObject[] Tools;
+    [SerializeField] RawImage[] ToolIcons;
 
     void Update()
     {
-        if (Input.GetKeyDown("t")) enableAllTools();
-
         if (Input.GetKeyDown("1"))
         {
             disalbeTools();
             Tools[0].SetActive(true);
+            EnableIcon(0);
         }
         if (Input.GetKeyDown("2"))
         {
             disalbeTools();
             Tools[1].SetActive(true);
+            EnableIcon(1);
         }
         if (Input.GetKeyDown("3"))
         {
             disalbeTools();
             Tools[2].SetActive(true);
+            EnableIcon(2);
         }
-        if (Input.GetKeyDown("4")) disalbeTools();
     }
 
     void disalbeTools()
     {
         for (int i = 0; i < Tools.Length; i++)
-        { Tools[i].SetActive(false); }
+        {
+            Tools[i].SetActive(false);
+            ToolIcons[i].color = Color.black;
+        }
     }
+
+    void EnableIcon(int Icon)
+    {
+        ToolIcons[Icon].color = Color.white;
+    }
+
+
+
+
+
+
+
+
+
+
     //-----List-----
     [SerializeField] List<GameObject> ToolList;
 
