@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockPickup : MonoBehaviour
+public class RockPickup : PickupRotation
 {
     public int rockAmount = 2;
 

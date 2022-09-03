@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HearthPickup : MonoBehaviour
+public class HearthPickup : PickupRotation
 {
     void OnCollisionEnter(Collision other)
     {

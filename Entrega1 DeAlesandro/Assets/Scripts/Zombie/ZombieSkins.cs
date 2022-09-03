@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class ZombieSkins : MonoBehaviour
 {
-    public enum Zombie {SkinA,SkinB}
-    public Zombie ZombieSkin;
+    //public enum Zombie { SkinA, SkinB }
+    //public Zombie ZombieSkin;
 
     public Material[] material;
-    public static int Skin;
+    int skin;
     Renderer rend;
 
     void Start()
     {
         rend = GetComponent<Renderer>();
+        skin = Random.Range(0,material.Length);
+        rend.sharedMaterial = material[skin];
+    }
 
+    /*void update()
+    {
         switch (ZombieSkin)
         {
             case Zombie.SkinA:
@@ -28,5 +33,5 @@ public class ZombieSkins : MonoBehaviour
 
                 break;
         }
-    }
+    }*/
 }

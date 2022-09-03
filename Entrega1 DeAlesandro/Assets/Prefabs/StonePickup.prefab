@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 692779358047319711}
   - component: {fileID: 692779358047319710}
   - component: {fileID: 692779358047319705}
-  - component: {fileID: 692779358047319708}
   - component: {fileID: 692779358047319704}
   m_Layer: 0
   m_Name: StonePickup
@@ -65,18 +64,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &692779358047319708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692779358047319707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd72dd8baf7929740926278c5af60f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &692779358047319704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8819eb47a45923444bd23bb604fd0b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotationSpeed: 0.5
   rockAmount: 2
 --- !u!1001 &692779357384913847
 PrefabInstance:

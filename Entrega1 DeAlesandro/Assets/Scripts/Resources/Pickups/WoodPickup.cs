@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WoodPickup : MonoBehaviour
+public class WoodPickup : PickupRotation
 {
     public int woodAmount = 1;
 

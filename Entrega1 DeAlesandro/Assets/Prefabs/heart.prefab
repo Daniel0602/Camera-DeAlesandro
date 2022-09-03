@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5864517654852372312}
   - component: {fileID: 5330751093214880777}
-  - component: {fileID: 5330751093214880778}
   - component: {fileID: 5330751093214880779}
   m_Layer: 0
   m_Name: heart
@@ -49,18 +48,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8087458221035121081, guid: 56bad7cc75a8c4d4e8ec6a12f82afad4, type: 3}
---- !u!114 &5330751093214880778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6496762492688784866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd72dd8baf7929740926278c5af60f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5330751093214880779
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,17 +8,27 @@ public class Zombies : MonoBehaviour
 
     [SerializeField] Transform Target;
 
-    public int ZDamage = 1;
-    public int life = 10;
-    public float Speed = 1f;
-    public float Range = 10f;
-    public bool frezed;
+    [SerializeField] ZombieData ZombieStats;
+
+    public int ZDamage;
+    public int life;
+    public float Speed;
+    public float Range;
+    public bool frezed = false;
     public bool CanAtack = true;
 
-    void Update()
+    void Start()
     {
-        transform.LookAt(Target);
+        ZDamage = ZombieStats.ZDamage;
+        life = ZombieStats.life;
+        Speed = ZombieStats.Speed;
+        Range = ZombieStats.Range;
+    }
 
+    void Update()
+    {   //-----MirarJugador-----
+        transform.LookAt(Target);
+        //-----Distancia-----
         Vector3 Dir = transform.position - Target.position;
         if (Dir.magnitude > 0.5 && Dir.magnitude < Range && !frezed)
         {
@@ -26,9 +36,7 @@ public class Zombies : MonoBehaviour
             if (!IsAnimation("walk")) ZombieAnimator.SetTrigger("walk");
         }
         else
-        {
-            if (!IsAnimation("idle")) ZombieAnimator.SetTrigger("idle");
-        }
+        { if (!IsAnimation("idle")) ZombieAnimator.SetTrigger("idle"); }
 
         if (Dir.magnitude <= 0.5 && CanAtack && !frezed)
         {
@@ -36,7 +44,12 @@ public class Zombies : MonoBehaviour
             if (!IsAnimation("atack")) ZombieAnimator.SetTrigger("atack");
             CanAtack = false;
         }
-        if (life <= 0) { if (!IsAnimation("die")) ZombieAnimator.SetBool("die", true); Invoke("died",3f); frezed = true; }
+        if (life <= 0) if (!IsAnimation("die"))
+            {
+                ZombieAnimator.SetBool("die", true);
+                Invoke("died", 3f);
+                frezed = true;
+            }
     }
 
     bool IsAnimation(string anim)
