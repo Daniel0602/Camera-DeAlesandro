@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class WoodPickup : PickupRotation
 {
-    public int woodAmount = 1;
+    public float woodAmount;
+
+    void Start()
+    {
+        woodAmount = Random.Range(1 * PlayerStats.resourceMultiplier,3 * PlayerStats.resourceMultiplier);
+    }
 
     public void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Inventory.Wood += woodAmount;
+
             Destroy(gameObject);
         }
     }

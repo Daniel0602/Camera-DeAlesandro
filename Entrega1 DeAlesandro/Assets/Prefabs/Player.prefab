@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 1112975750560856041}
   - component: {fileID: 1112975750560856043}
   - component: {fileID: 1476643040}
+  - component: {fileID: 1476643039}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -280,6 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110a4d42741ea2b4b82299f93131e45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventario: {fileID: 0}
+  InventoryOn: 0
+  WoodText: {fileID: 0}
+  RockText: {fileID: 0}
 --- !u!114 &1476643040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +297,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a0f3d6eb946884ead9df37d5fce8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1476643039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112975750560856036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b249a9f9c16fb42a1223866750661c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TM: {fileID: 0}
 --- !u!1 &1112975750639370500
 GameObject:
   m_ObjectHideFlags: 0
