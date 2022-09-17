@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     //-----Jump-----
     public bool CanJump;
+    public Transform RayBase;
     private Rigidbody myRigidbody;
     void Start() { myRigidbody = GetComponent<Rigidbody>(); }
 
@@ -25,13 +26,13 @@ public class PlayerMovement : MonoBehaviour
         direction = Vector3.zero;
 
         if (Input.GetKey("w"))
-        {direction += Vector3.forward;}
+        { direction += Vector3.forward; }
         if (Input.GetKey("s"))
-        {direction += Vector3.back;}
+        { direction += Vector3.back; }
         if (Input.GetKey("a"))
-        {direction += Vector3.left;}
+        { direction += Vector3.left; }
         if (Input.GetKey("d"))
-        {direction += Vector3.right;}
+        { direction += Vector3.right; }
 
         //-----Movimiento-----
         if (direction != Vector3.zero)
@@ -49,18 +50,23 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        PlayerAnimatorS.SetFloat("Horizontal",x);
-        PlayerAnimatorS.SetFloat("Vertical",z);
+        PlayerAnimatorS.SetFloat("Horizontal", x);
+        PlayerAnimatorS.SetFloat("Vertical", z);
     }
 
     private void FixedUpdate()
     {
         //-----Jump-----
         if (Input.GetKeyDown("space") && CanJump)
-        { myRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); }
+        {
+            myRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            CanJump = false;
+        }
+
+        Raycast();
     }
     //-----CanJump-----
-    private void OnCollisionEnter(Collision other)
+    /*private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Floor"))
         {
@@ -76,6 +82,29 @@ public class PlayerMovement : MonoBehaviour
             CanJump = false;
             if(!IsAnimation("fall")) PlayerAnimatorS.SetTrigger("Jumping");
         }
+    }*/
+
+    [SerializeField] private float rayDistance = 10f;
+    [SerializeField] Color GizmoColor;
+
+    private void Raycast()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(RayBase.position, transform.TransformDirection(Vector3.down), out hit, rayDistance))
+        {
+            if (hit.transform.CompareTag("Floor"))
+            {
+                GizmoColor = Color.red;
+                CanJump = true;
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = GizmoColor;
+        Vector3 direction = RayBase.TransformDirection(Vector3.down) * rayDistance;
+        Gizmos.DrawRay(RayBase.position, direction);
     }
 
     bool IsAnimation(string anim)
