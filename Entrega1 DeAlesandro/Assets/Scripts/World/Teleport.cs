@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
+    public AudioSource TeleportSound;
+
     public GameObject Player;
     public Transform FinalPoint;
 
@@ -11,6 +13,7 @@ public class Teleport : MonoBehaviour
     {
         if(other.transform.CompareTag("Player"))
         {
+            TeleportSound.Play();
             Player.transform.position = FinalPoint.position;
         }
     }

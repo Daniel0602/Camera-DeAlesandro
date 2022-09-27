@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Zombies : MonoBehaviour
 {
+    public AudioSource ZombieAtack;
+
     [SerializeField] Animator ZombieAnimator;
 
     [SerializeField] Transform Target;
@@ -56,7 +58,7 @@ public class Zombies : MonoBehaviour
     bool IsAnimation(string anim)
     { return ZombieAnimator.GetCurrentAnimatorStateInfo(0).IsName(anim); }
 
-    void atack() { PlayerStats.life -= ZDamage; CanAtack = true; }
+    void atack() { PlayerStats.life -= ZDamage; CanAtack = true; ZombieAtack.Play();}
 
     void died() { Destroy(gameObject); }
 

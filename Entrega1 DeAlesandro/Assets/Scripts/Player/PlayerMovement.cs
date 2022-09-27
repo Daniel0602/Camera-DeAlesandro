@@ -23,7 +23,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButton(0)) PlayerAnimatorS.SetTrigger("useTool");
+        if(Input.GetMouseButton(0))
+        {
+            StartCoroutine("UseTool");
+        }
 
         direction = Vector3.zero;
 
@@ -63,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             CanJump = false;
+            PlayerAnimatorS.SetBool("Falling",true);
         }
 
         Raycast();
@@ -98,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 GizmoColor = Color.red;
                 CanJump = true;
+                PlayerAnimatorS.SetBool("Falling",false);
             }
         }
     }
@@ -111,4 +116,11 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsAnimation(string anim)
     { return PlayerAnimatorS.GetCurrentAnimatorStateInfo(0).IsName(anim); }
+
+    IEnumerator UseTool()
+    {
+        PlayerAnimatorS.SetBool("UsingTool",true);
+        yield return new WaitForSeconds(.1f);
+        PlayerAnimatorS.SetBool("UsingTool",false);
+    }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour
 {
+    public AudioSource ImpactSound;
+
     [SerializeField] GameObject Drop;
     Rigidbody MyRigidbody;
     public int life = 5;
@@ -21,7 +23,7 @@ public class Tree : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("intarea") && ToolManager.activeTool == 3)
-        { life -= PlayerStats.resoruceDamage; }
+        { life -= PlayerStats.resoruceDamage; ImpactSound.Play();}
 
         if (other.gameObject.CompareTag("Resource"))
         { Destroy(gameObject); }

@@ -137,5 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895e253d0cb84364ea6ecff5ea01f072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ImpactSound: {fileID: 525360431731226339, guid: 6ad979739d17864458916d2d0823f285, type: 3}
   Drop: {fileID: 2713352255311558882, guid: 89fcf2c17bc4a77478397bbe5ff18d46, type: 3}
   life: 5
