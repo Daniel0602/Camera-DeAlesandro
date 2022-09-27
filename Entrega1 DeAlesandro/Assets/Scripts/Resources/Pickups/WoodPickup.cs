@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WoodPickup : PickupRotation
 {
-    public float woodAmount;
+     float woodAmount;
 
     void Start()
     {

@@ -28,6 +28,7 @@ public class Zombies : MonoBehaviour
     void Update()
     {   //-----MirarJugador-----
         transform.LookAt(Target);
+
         //-----Distancia-----
         Vector3 Dir = transform.position - Target.position;
         if (Dir.magnitude > 0.5 && Dir.magnitude < Range && !frezed)
@@ -61,7 +62,7 @@ public class Zombies : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("intarea"))
+        if (other.gameObject.CompareTag("intarea") && ToolManager.activeTool == 1)
         { life -= PlayerStats.atackDamage; }
     }
 }

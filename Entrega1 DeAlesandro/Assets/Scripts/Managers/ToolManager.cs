@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ToolManager : MonoBehaviour
 {
+    public static int activeTool;
+
     //-----Array-----
     [SerializeField] GameObject[] Tools;
     [SerializeField] RawImage[] ToolIcons;
@@ -13,18 +15,21 @@ public class ToolManager : MonoBehaviour
     {
         if (Input.GetKeyDown("1"))
         {
+            activeTool = 1;
             disalbeTools();
             Tools[0].SetActive(true);
             EnableIcon(0);
         }
         if (Input.GetKeyDown("2"))
         {
+            activeTool = 2;
             disalbeTools();
             Tools[1].SetActive(true);
             EnableIcon(1);
         }
         if (Input.GetKeyDown("3"))
         {
+            activeTool = 3;
             disalbeTools();
             Tools[2].SetActive(true);
             EnableIcon(2);

@@ -20,7 +20,7 @@ public class Stone : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("intarea"))
+        if (other.gameObject.CompareTag("intarea") && ToolManager.activeTool == 2)
         { life -= PlayerStats.resoruceDamage; }
 
         if (other.gameObject.CompareTag("Resource"))

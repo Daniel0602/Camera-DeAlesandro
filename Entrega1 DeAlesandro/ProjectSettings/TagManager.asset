@@ -9,8 +9,9 @@ TagManager:
   - intarea
   - InteractZone
   - Tool
-  - FireBall
   - Resource
+  - Tienda
+  - Chest
   layers:
   - Default
   - TransparentFX

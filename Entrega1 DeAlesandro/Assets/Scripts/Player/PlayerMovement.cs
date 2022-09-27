@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetMouseButton(0)) PlayerAnimatorS.SetTrigger("useTool");
+
         direction = Vector3.zero;
 
         if (Input.GetKey("w"))

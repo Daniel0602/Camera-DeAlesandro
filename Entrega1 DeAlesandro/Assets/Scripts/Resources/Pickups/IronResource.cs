@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockPickup : PickupRotation
+public class IronResource : MonoBehaviour
 {
-     float rockAmount;
+    float IronAmount;
 
     void Start()
     {
-        rockAmount = Random.Range(2 * PlayerStats.resourceMultiplier,4 * PlayerStats.resourceMultiplier);
+        IronAmount = Random.Range(1 * PlayerStats.resourceMultiplier, 3 * PlayerStats.resourceMultiplier);
     }
 
     public void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Inventory.Rock += rockAmount;
+            Inventory.Iron += IronAmount;
 
             Destroy(gameObject);
         }
