@@ -19,11 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public bool CanJump;
     public Transform RayBase;
     private Rigidbody myRigidbody;
+
     void Start() { myRigidbody = GetComponent<Rigidbody>(); }
 
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
             StartCoroutine("UseTool");
         }
@@ -119,7 +120,10 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator UseTool()
     {
-        PlayerAnimatorS.SetBool("UsingTool",true);
+        if(!IsAnimation("UseTool"))
+        {
+            PlayerAnimatorS.SetBool("UsingTool",true);
+        }
         yield return new WaitForSeconds(.1f);
         PlayerAnimatorS.SetBool("UsingTool",false);
     }
